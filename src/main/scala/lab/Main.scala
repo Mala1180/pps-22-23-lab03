@@ -17,18 +17,18 @@ object Main extends App:
     case (Cons(h, t), 0) => Cons(h, t)
     case (Cons(_, t), i) => drop(t, i - 1)
 
-  //  private def get[A](l: List[A], i: Int): Option[A] = (l, i) match
-  //    case (Nil(), _) => None()
-  //    case (Cons(h, _), 0) => Some(h)
-  //    case (Cons(h, t), i) => get(Cons(h, t), i - 1)
-
   def append[A](left: List[A], right: List[A]): List[A] = (left, right) match
     case (Nil(), r) => r
-    case (l, Nil()) => l
     case (Cons(h, t), r) => Cons(h, append(t, r))
 
   def flatMap[A, B](l: List[A])(f: A => List[B]): List[B] = (l, f) match
     case (Nil(), _) => Nil()
     case (Cons(h, t), f) => append(f(h), flatMap(t)(f))
 
+  def max(l: List[Int]): Option[Int] = l match
+    case Nil() => None()
+    case Cons(h, Nil()) => Some(h)
+    case Cons(h, t) => max(t) match
+      case Some(a) if a > h => Some(a)
+      case _ => Some(h)
 
