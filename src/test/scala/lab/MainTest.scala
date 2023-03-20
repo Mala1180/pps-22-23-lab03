@@ -39,3 +39,11 @@ class MainTest:
     val persons = Cons(Student("Matteini", 22), Cons(Teacher("Viroli", "pps"), Cons(Student("Matteini", 22), Nil())))
     assertEquals(Cons("pps", Nil()), getCourses(persons))
     assertEquals(Nil(), getCourses(Cons(Student("Matteini", 22), Nil())))
+
+  @Test def testFolds() =
+    val lst = Cons(3, Cons(7, Cons(1, Cons(5, Nil()))))
+    assertEquals(0, foldLeft(Nil())(0)(_ - _))
+    assertEquals(-16, foldLeft(lst)(0)(_ - _))
+    assertEquals(-8, foldRight(lst)(0)(_ - _))
+    assertEquals(16, foldRight(lst)(0)(_ + _))
+

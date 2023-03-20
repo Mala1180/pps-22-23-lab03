@@ -33,6 +33,7 @@ object Main extends App:
       case _ => Some(h)
 
   // Task 2
+
   import u02.Modules.Person
   import Person.*
 
@@ -40,3 +41,17 @@ object Main extends App:
     case Student(_, _) => Nil()
     case Teacher(_, course) => Cons(course, Nil()))
 
+  def foldLeft(list: List[Int])(acc: Int)(f: (Int, Int) => Int): Int = list match
+    case Nil() => acc
+    case Cons(head, Nil()) => f(acc, head)
+    case Cons(head, tail) => foldLeft(tail)(f(acc, head))(f)
+
+  def foldRight(list: List[Int])(acc: Int)(f: (Int, Int) => Int): Int = list match
+    case Nil() => acc
+    case Cons(head, Nil()) => f(head, acc)
+    case Cons(head, tail) => f(head, foldRight(tail)(acc)(f))
+
+// try that didn't work
+//  def foldRight(list: List[Int])(acc: Int)(f: (Int, Int) => Int): Int = list match
+//    case List.Cons(head, tail) => foldLeft(list)(acc)((a, b) => f(b, a))
+//    case List.Nil() => acc
