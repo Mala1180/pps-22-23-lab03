@@ -32,3 +32,10 @@ class MainTest:
     assertEquals(Some(30), max(Cons(10, Cons(25, Cons(30, Nil())))))
     assertEquals(Some(1), max(Cons(1, Nil())))
     assertEquals(None(), max(Nil()))
+
+  @Test def testGetCourses() =
+    import u02.Modules.Person
+    import Person.*
+    val persons = Cons(Student("Matteini", 22), Cons(Teacher("Viroli", "pps"), Cons(Student("Matteini", 22), Nil())))
+    assertEquals(Cons("pps", Nil()), getCourses(persons))
+    assertEquals(Nil(), getCourses(Cons(Student("Matteini", 22), Nil())))

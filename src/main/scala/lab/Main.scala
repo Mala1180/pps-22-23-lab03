@@ -32,3 +32,11 @@ object Main extends App:
       case Some(a) if a > h => Some(a)
       case _ => Some(h)
 
+  // Task 2
+  import u02.Modules.Person
+  import Person.*
+
+  def getCourses(list: List[Person]): List[String] = flatMap(list)(p => p match
+    case Student(_, _) => Nil()
+    case Teacher(_, course) => Cons(course, Nil()))
+
