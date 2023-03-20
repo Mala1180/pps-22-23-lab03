@@ -26,3 +26,9 @@ object Main extends App:
     case (Nil(), r) => r
     case (l, Nil()) => l
     case (Cons(h, t), r) => Cons(h, append(t, r))
+
+  def flatMap[A, B](l: List[A])(f: A => List[B]): List[B] = (l, f) match
+    case (Nil(), _) => Nil()
+    case (Cons(h, t), f) => append(f(h), flatMap(t)(f))
+
+
