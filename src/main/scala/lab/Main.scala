@@ -27,7 +27,6 @@ object Main extends App:
 
   def max(l: List[Int]): Option[Int] = l match
     case Nil() => None()
-    case Cons(h, Nil()) => Some(h)
     case Cons(h, t) => max(t) match
       case Some(a) if a > h => Some(a)
       case _ => Some(h)
